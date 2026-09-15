@@ -1,0 +1,32 @@
+.hero-section {
+  padding-top: 25vh;
+  min-height: 90vh;
+}
+
+.hero-title {
+  font-size: clamp(80px, 15vw, 240px);
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.hero-name {
+  font-size: 17px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.hero-labels {
+  font-size: 17px;
+  color: var(--color-text-secondary);
+  margin-bottom: 4rem;
+}
+
+.hero-statement {
+  font-size: clamp(32px, 5vw, 64px);
+  max-width: 900px;
+  line-height: 1.1;
+  color: var(--color-text-primary);
+}
