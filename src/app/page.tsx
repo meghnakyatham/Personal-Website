@@ -1,6 +1,20 @@
 "use client";
 import { useEffect } from "react";
 import Head from "next/head";
+import { motion } from "framer-motion";
+import HeroGrid from "@/components/HeroGrid";
+import RevealText from "@/components/RevealText";
+import ScrollHeading from "@/components/ScrollHeading";
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 60 },
+  show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 80, damping: 20 } }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.15 } }
+};
 
 export default function Home() {
   useEffect(() => {
@@ -108,299 +122,240 @@ export default function Home() {
       </header>
 
       <main id="home">
-        <div className="wrap hero">
-          <div className="hero-eyebrow">SASWAT SAHU — IDEAS · TECH · PEOPLE</div>
-          <h1>
-            <span className="line">
-              <span>BUILD WHAT</span>
-            </span>
-            <span className="line">
-              <span>SHOULD EXIST.</span>
-            </span>
-          </h1>
-          <div className="hero-sub">
-            <p className="hero-role">
-              Designer, builder and technologist. Co-founder &amp; CTO at Trukky —
-              working across software, AI and the systems that move physical goods.
-            </p>
-            <div className="hero-current">
-              <span className="label">Currently building</span>
-              <a href="#work" className="item">
-                Trukky → freight, rebuilt around demand &amp; supply prediction
-              </a>
-            </div>
-          </div>
-        </div>
+        <HeroGrid />
 
-        <section id="focus" className="focus" style={{ paddingBottom: '100px' }}>
-          <div className="wrap">
-            <div className="big-label">
-              <span className="index fade">01 — The Domain</span>
-              <div className="mask">
-                <h2>
-                  Systems &amp;<br />
-                  Scale.
-                </h2>
+        <section id="roles" className="wrap" style={{ padding: "0 20px", marginBottom: "100px" }}>
+          <motion.div 
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+            className="vibrant-grid"
+          >
+            <motion.div variants={fadeInUp} className="vibrant-card card-purple">
+              <div>
+                <span className="section-index">01</span>
+                <h3 className="vibrant-title" style={{ marginTop: "16px" }}>Designer</h3>
               </div>
+              <p className="vibrant-desc">Interfaces that don't get in the way. Great software is invisible.</p>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="vibrant-card card-lime">
+              <div>
+                <span className="section-index">02</span>
+                <h3 className="vibrant-title" style={{ marginTop: "16px" }}>Builder</h3>
+              </div>
+              <p className="vibrant-desc">Building the infrastructure of movement from the ground up.</p>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="vibrant-card card-dark">
+              <div>
+                <span className="section-index">03</span>
+                <h3 className="vibrant-title" style={{ marginTop: "16px" }}>Technologist</h3>
+              </div>
+              <p className="vibrant-desc">AI and forecasting applied to real-world physical constraints.</p>
+            </motion.div>
+          </motion.div>
+        </section>
+
+        <section id="focus" className="wrap" style={{ padding: "100px 20px", marginBottom: "100px", maxWidth: "1200px" }}>
+          <div className="huge-title-container" style={{ marginBottom: "60px" }}>
+            <span className="section-index">04 — THE DOMAIN</span>
+          </div>
+          <RevealText text="Building the infrastructure of movement. From leading engineering at Trukky to designing complex data pipelines, the core focus is always on creating resilient, scalable systems that can handle real-world physical constraints and unpredictable supply chains." />
+        </section>
+
+        <section id="work" className="section-floating">
+          <motion.div 
+            className="wrap"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+          >
+            <div className="huge-title-container">
+              <span className="section-index">02 — SELECTED WORK</span>
+              <motion.h2 variants={fadeInUp} className="huge-title">WORK.</motion.h2>
+            </div>
+
+            <motion.div variants={fadeInUp} className="case">
+              <div className="case-visual">
+                <span className="case-num">01</span>
+                <span className="tag-chip">Logistics · Freight-tech</span>
+              </div>
+              <div className="case-body">
+                <div className="case-meta">2015 — Present · Co-founder &amp; CTO</div>
+                <h3>Trukky</h3>
+                <p>
+                  The technology behind a freight and logistics platform connecting
+                  shippers directly with drivers and fleet owners — cutting out layers
+                  of brokerage between demand and supply.
+                </p>
+                <a className="case-link" href="#">
+                  Read the case
+                  <svg width="18" height="12" viewBox="0 0 18 12" fill="none">
+                    <path d="M1 6H17M17 6L12 1M17 6L12 11" stroke="currentColor" strokeWidth="1.6" />
+                  </svg>
+                </a>
+              </div>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="case">
+              <div className="case-visual">
+                <span className="case-num">02</span>
+                <span className="tag-chip">Product studio</span>
+              </div>
+              <div className="case-body">
+                <div className="case-meta">Earlier · Co-founder</div>
+                <h3>Maze Square</h3>
+                <p>
+                  A product studio building web and mobile products for clients
+                  across retail, industrial and financial sectors.
+                </p>
+                <a className="case-link" href="#">
+                  Read the case
+                  <svg width="18" height="12" viewBox="0 0 18 12" fill="none">
+                    <path d="M1 6H17M17 6L12 1M17 6L12 11" stroke="currentColor" strokeWidth="1.6" />
+                  </svg>
+                </a>
+              </div>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="case">
+              <div className="case-visual">
+                <span className="case-num">03</span>
+                <span className="tag-chip">Design &amp; engineering</span>
+              </div>
+              <div className="case-body">
+                <div className="case-meta">Earlier · Client work</div>
+                <h3>Selected client work</h3>
+                <p>
+                  Ten years of product and engineering work with organizations
+                  spanning manufacturing, auction houses and energy — building the
+                  systems underneath the brand.
+                </p>
+                <a className="case-link" href="#">
+                  Read the case
+                  <svg width="18" height="12" viewBox="0 0 18 12" fill="none">
+                    <path d="M1 6H17M17 6L12 1M17 6L12 11" stroke="currentColor" strokeWidth="1.6" />
+                  </svg>
+                </a>
+              </div>
+            </motion.div>
+          </motion.div>
+        </section>
+
+        <section id="now" className="section-floating">
+          <motion.div 
+            className="wrap"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+          >
+            <div className="huge-title-container">
+              <span className="section-index">03 — NOW</span>
+              <motion.h2 variants={fadeInUp} className="huge-title">NOW.</motion.h2>
+            </div>
+            <motion.div variants={fadeInUp}>
+              <p className="now-text">
+                Rebuilding how Trukky predicts demand and supply across routes —
+                treating freight pricing as a live forecasting problem, not a
+                fixed rate card.
+              </p>
+              <div className="now-meta">
+                <span className="pulse"></span> Updated quarterly · last update September 2026
+              </div>
+            </motion.div>
+          </motion.div>
+        </section>
+
+        <section id="ideas" className="section-floating">
+          <motion.div 
+            className="wrap"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+          >
+            <div className="huge-title-container">
+              <span className="section-index">04 — THOUGHTS</span>
+              <motion.h2 variants={fadeInUp} className="huge-title">IDEAS.</motion.h2>
             </div>
             
-            <div className="focus-list fade" style={{ display: 'flex', flexDirection: 'column', gap: '40px', marginTop: '60px', maxWidth: '900px' }}>
+            <motion.p variants={fadeInUp} className="medium-large-text">
+              Nothing published yet. This space stays empty until there's a real piece worth putting here — not a placeholder post.
+            </motion.p>
+          </motion.div>
+        </section>
+
+        <section id="about" className="section-floating">
+          <motion.div 
+            className="wrap"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+          >
+            <div className="huge-title-container">
+              <span className="section-index">05 — BACKGROUND</span>
+              <motion.h2 variants={fadeInUp} className="huge-title">ABOUT.</motion.h2>
+            </div>
+            
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "start" }}>
+              <motion.div variants={fadeInUp} className="medium-large-text">
+                Saswat Sahu is a designer, builder and technologist. His work sits at the intersection of software, data and physical systems.
+              </motion.div>
               
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 3fr', gap: '20px', borderTop: '1px solid var(--line)', paddingTop: '30px' }}>
-                <span style={{ fontSize: '13px', fontWeight: '600', color: 'var(--accent)', letterSpacing: '0.05em' }}>SOFTWARE &amp; ARCHITECTURE</span>
-                <div>
-                  <h3 style={{ fontSize: 'clamp(24px, 3vw, 36px)', fontWeight: 800, letterSpacing: '-0.02em', marginBottom: '14px', lineHeight: 1.1 }}>Building the infrastructure of movement.</h3>
-                  <p style={{ fontSize: '16px', color: '#5B5A54', maxWidth: '60ch' }}>
-                    From leading engineering at Trukky to designing complex data pipelines, the core focus is always on creating resilient, scalable systems that can handle real-world physical constraints and unpredictable supply chains.
-                  </p>
-                </div>
-              </div>
-
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 3fr', gap: '20px', borderTop: '1px solid var(--line)', paddingTop: '30px' }}>
-                <span style={{ fontSize: '13px', fontWeight: '600', color: 'var(--accent)', letterSpacing: '0.05em' }}>PRODUCT &amp; DESIGN</span>
-                <div>
-                  <h3 style={{ fontSize: 'clamp(24px, 3vw, 36px)', fontWeight: 800, letterSpacing: '-0.02em', marginBottom: '14px', lineHeight: 1.1 }}>Interfaces that don't get in the way.</h3>
-                  <p style={{ fontSize: '16px', color: '#5B5A54', maxWidth: '60ch' }}>
-                    A decade of moving between deep technical architecture and front-end product design. Great software is invisible; it removes friction from the user rather than adding operational overhead.
-                  </p>
-                </div>
-              </div>
-
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 3fr', gap: '20px', borderTop: '1px solid var(--line)', paddingTop: '30px', borderBottom: '1px solid var(--line)', paddingBottom: '40px' }}>
-                <span style={{ fontSize: '13px', fontWeight: '600', color: 'var(--accent)', letterSpacing: '0.05em' }}>AI &amp; FORECASTING</span>
-                <div>
-                  <h3 style={{ fontSize: 'clamp(24px, 3vw, 36px)', fontWeight: 800, letterSpacing: '-0.02em', marginBottom: '14px', lineHeight: 1.1 }}>Intelligence applied to physical logistics.</h3>
-                  <p style={{ fontSize: '16px', color: '#5B5A54', maxWidth: '60ch' }}>
-                    Moving beyond conversational AI to predictive systems. Treating freight pricing and route optimization as live forecasting problems, reducing empty miles and improving driver utilization.
-                  </p>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </section>
-
-        <section id="work" className="work">
-          <div className="wrap">
-            <div className="big-label">
-              <span className="index fade">02 — Selected work</span>
-              <div className="mask">
-                <h2>WORK</h2>
-              </div>
-            </div>
-          </div>
-
-          <div className="case fade">
-            <div className="case-visual">
-              <span className="case-num">01</span>
-              <span className="tag-chip">Logistics · Freight-tech</span>
-            </div>
-            <div className="case-body">
-              <div className="case-meta">2015 — Present · Co-founder &amp; CTO</div>
-              <h3>Trukky</h3>
-              <p>
-                The technology behind a freight and logistics platform connecting
-                shippers directly with drivers and fleet owners — cutting out layers
-                of brokerage between demand and supply.
-              </p>
-              <a className="case-link" href="#">
-                Read the case
-                <svg width="18" height="12" viewBox="0 0 18 12" fill="none">
-                  <path
-                    d="M1 6H17M17 6L12 1M17 6L12 11"
-                    stroke="currentColor"
-                    strokeWidth="1.6"
-                  />
-                </svg>
-              </a>
-            </div>
-          </div>
-
-          <div className="case fade">
-            <div className="case-visual">
-              <span className="case-num">02</span>
-              <span className="tag-chip">Product studio</span>
-            </div>
-            <div className="case-body">
-              <div className="case-meta">Earlier · Co-founder</div>
-              <h3>Maze Square</h3>
-              <p>
-                A product studio building web and mobile products for clients
-                across retail, industrial and financial sectors.
-              </p>
-              <a className="case-link" href="#">
-                Read the case
-                <svg width="18" height="12" viewBox="0 0 18 12" fill="none">
-                  <path
-                    d="M1 6H17M17 6L12 1M17 6L12 11"
-                    stroke="currentColor"
-                    strokeWidth="1.6"
-                  />
-                </svg>
-              </a>
-            </div>
-          </div>
-
-          <div className="case fade">
-            <div className="case-visual">
-              <span className="case-num">03</span>
-              <span className="tag-chip">Design &amp; engineering</span>
-            </div>
-            <div className="case-body">
-              <div className="case-meta">Earlier · Client work</div>
-              <h3>Selected client work</h3>
-              <p>
-                Ten years of product and engineering work with organizations
-                spanning manufacturing, auction houses and energy — building the
-                systems underneath the brand.
-              </p>
-              <a className="case-link" href="#">
-                Read the case
-                <svg width="18" height="12" viewBox="0 0 18 12" fill="none">
-                  <path
-                    d="M1 6H17M17 6L12 1M17 6L12 11"
-                    stroke="currentColor"
-                    strokeWidth="1.6"
-                  />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <section id="now" className="now">
-          <div className="wrap">
-            <div className="now-inner">
-              <span className="index fade" style={{ display: "block" }}>
-                03 — Now
-              </span>
-              <div className="fade">
-                <p className="now-text">
-                  Rebuilding how Trukky predicts demand and supply across routes —
-                  treating freight pricing as a live forecasting problem, not a
-                  fixed rate card.
-                </p>
-                <div className="now-meta">
-                  <span className="pulse"></span> Updated quarterly · last update
-                  September 2026
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="ideas" className="empty-block">
-          <div className="wrap">
-            <div className="big-label" style={{ paddingTop: 0 }}>
-              <span className="index fade">04 — Ideas</span>
-              <div className="mask">
-                <h2>IDEAS</h2>
-              </div>
-            </div>
-            <p className="empty-note fade">
-              Nothing published yet. This space stays empty until there's a real
-              piece worth putting here — not a placeholder post.
-            </p>
-          </div>
-        </section>
-
-        <section id="about" className="about">
-          <div className="wrap">
-            <div className="big-label" style={{ paddingTop: 0 }}>
-              <span className="index fade">05 — About</span>
-              <div className="mask">
-                <h2>ABOUT</h2>
-              </div>
-            </div>
-            <div className="about-grid">
-              <div className="about-body fade">
-                <p>
-                  Saswat Sahu is a designer, builder and technologist — co-founder
-                  and CTO of Trukky, a logistics platform rebuilding how freight
-                  gets priced and moved across India.
-                </p>
-                <p>
-                  His work sits at the intersection of software, data and physical
-                  systems: ten years spent moving between design, full-stack
-                  engineering and product leadership, building for organizations
-                  ranging from early-stage startups to established manufacturers.
-                </p>
-                <p>
-                  SAHU is the public name for that body of work — a single, durable
-                  identity rather than a rotating cast of company brands.
-                </p>
-              </div>
-              <div className="principles fade">
-                <div className="principle">
+              <div className="principles">
+                <motion.div variants={fadeInUp} className="principle">
                   <h4>The work is the brand</h4>
-                  <p>
-                    Reputation follows from what gets shipped, not from what gets
-                    said about it.
-                  </p>
-                </div>
-                <div className="principle">
+                  <p>Reputation follows from what gets shipped, not from what gets said about it.</p>
+                </motion.div>
+                <motion.div variants={fadeInUp} className="principle">
                   <h4>Technology is the territory</h4>
-                  <p>
-                    AI is one chapter of the work, not the whole identity.
-                  </p>
-                </div>
-                <div className="principle">
+                  <p>AI is one chapter of the work, not the whole identity.</p>
+                </motion.div>
+                <motion.div variants={fadeInUp} className="principle">
                   <h4>Companies stay independent</h4>
-                  <p>
-                    Trukky and future ventures keep their own names and
-                    identities.
-                  </p>
-                </div>
-                <div className="principle">
+                  <p>Trukky and future ventures keep their own names and identities.</p>
+                </motion.div>
+                <motion.div variants={fadeInUp} className="principle">
                   <h4>Built for twenty years</h4>
-                  <p>
-                    Decisions are made for the decade ahead, not the next viral
-                    post.
-                  </p>
-                </div>
+                  <p>Decisions are made for the decade ahead, not the next viral post.</p>
+                </motion.div>
               </div>
             </div>
-          </div>
-        </section>
-
-        <section id="media" className="empty-block">
-          <div className="wrap">
-            <div className="big-label" style={{ paddingTop: 0 }}>
-              <span className="index fade">06 — Media</span>
-              <div className="mask">
-                <h2>MEDIA</h2>
-              </div>
-            </div>
-            <p className="empty-note fade">
-              Nothing to list yet. This page fills in as real interviews, talks or
-              coverage happen — never manufactured to look active.
-            </p>
-          </div>
+          </motion.div>
         </section>
       </main>
 
-      <footer id="contact">
-        <div className="wrap">
-          <span className="index fade" style={{ color: "rgba(247,247,245,.6)" }}>
-            07 — Contact
-          </span>
-          <h2 className="contact-head fade">Let's talk.</h2>
-          <div className="contact-links fade">
+      <footer id="contact" className="section-floating" style={{ background: "var(--core)", color: "var(--surface)", marginBottom: 0, borderRadius: "40px 40px 0 0" }}>
+        <motion.div 
+          className="wrap"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={staggerContainer}
+        >
+          <span className="section-index" style={{ color: "rgba(247,247,245,.6)" }}>06 — CONNECT</span>
+          <motion.h2 variants={fadeInUp} className="huge-title" style={{ color: "var(--surface)" }}>LET'S TALK.</motion.h2>
+          
+          <motion.div variants={fadeInUp} className="contact-links">
             <a href="mailto:hi@sahu.io">hi@sahu.io</a>
-            <a href="https://www.linkedin.com/in/saswatsahu/" target="_blank" rel="noopener noreferrer">
-              LinkedIn
-            </a>
+            <a href="https://www.linkedin.com/in/saswatsahu/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             <a href="#" target="_blank" rel="noopener noreferrer">X / @sahu</a>
             <a href="#" target="_blank" rel="noopener noreferrer">GitHub</a>
-          </div>
-          <div className="foot-bottom">
+          </motion.div>
+          
+          <motion.div variants={fadeInUp} className="foot-bottom">
             <span>© 2026 Saswat Sahu. SAHU is his working name.</span>
             <span style={{ display: "flex", gap: "22px" }}>
               <a href="#">Privacy Policy</a>
               <a href="#">Terms</a>
             </span>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </footer>
     </>
   );
